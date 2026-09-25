@@ -88,7 +88,7 @@ To prevent fallback to secondary hardware or environmental channels when primary
 | Layer | Attack Vector / Telemetry Target | Defensive Mechanism | Invariant Outcome |
 | :--- | :--- | :--- | :--- |
 | **1. Application Event Bus** | Scroll velocity, sub-second dwell times, hover jitter | Client-Side Event Fuzzer | Injects micro-timing noise; breaks model gradient descent. |
-| **2. Hardware & OS Sensors** | Ambient light, battery drain, accelerometer, camera APIs | OS API Virtualization | Returns static/synthetic sensor baselines to sandboxed apps. |
+| **2. Hardware & OS Sensors** | Ambient light, battery drain, 3-axis gyroscope (micro-tremor/posture tell), accelerometer | OS API Virtualization | Virtualizes motion/light APIs; returns synthetic static gravity/motion vectors to block posture and arousal profiling. |
 | **3. Network & Transport** | TCP ACK timing, packet round-trip time (RTT) | Transport Packet Padding | Equalizes outbound packet sizes and delays to stop RTT profiling. |
 | **4. Ambient Physical Space** | External CCTV, BLE beacons, Wi-Fi MAC tracking | Ephemeral MAC/BLE Rotation | Rotates hardware identifiers continuously; decouples physical location from vector state. |
 
