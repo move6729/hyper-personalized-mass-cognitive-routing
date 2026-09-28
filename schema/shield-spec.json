@@ -1,0 +1,42 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://hpmcr-defense.org/v1/shield-spec.json",
+  "title": "HPMCR_Client_Defensive_Invariant",
+  "type": "object",
+  "properties": {
+    "node_identifier": { "type": "string", "format": "uuid" },
+    "local_defense_parameters": {
+      "type": "object",
+      "properties": {
+        "max_trajectory_drift_threshold": { 
+          "type": "number",
+          "description": "Maximum allowed angular deviation in user latent representation per unit time."
+        },
+        "telemetry_fuzzing_enabled": { 
+          "type": "boolean",
+          "description": "Injects synthetic micro-timing jitter into browser/app telemetry event bus."
+        },
+        "hardware_api_virtualization": {
+          "type": "boolean",
+          "description": "Intercepts low-level OS sensor queries and returns static synthetic baselines."
+        },
+        "ephemeral_mac_rotation_interval_sec": {
+          "type": "integer",
+          "description": "Frequency (in seconds) of local hardware network identifier rotation."
+        },
+        "context_pruning_policy": {
+          "type": "string",
+          "enum": ["STOCHASTIC_FUZZING", "HARD_CONTEXT_RESET", "LOCAL_VECTOR_DECOUPLE"]
+        }
+      },
+      "required": [
+        "max_trajectory_drift_threshold", 
+        "telemetry_fuzzing_enabled", 
+        "hardware_api_virtualization",
+        "ephemeral_mac_rotation_interval_sec",
+        "context_pruning_policy"
+      ]
+    }
+  },
+  "required": ["node_identifier", "local_defense_parameters"]
+}
